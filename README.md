@@ -1,50 +1,167 @@
-# Welcome to your Expo app 👋
+# Progress Counter App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile app for tracking events with countdown timers, time-since tracking, and stopwatch functionality. Built with React Native and Expo.
 
-## Get started
+## Features
 
-1. Install dependencies
+### ✅ Core Features
+- **Add Events**: Create events with custom titles, dates, and types
+- **Timer**: Stopwatch functionality with start/pause controls
+- **Countdown**: Countdown to future events with real-time updates
+- **Time Since**: Track how much time has passed since a specific date
+- **Tags**: Organize events with custom tags and colors
+- **Calendar Sync**: Sync events to your device calendar
+- **Reminders**: Set notifications for countdown events
+- **Real-time Updates**: Live time displays that update every second
 
+### 📱 Platform Support
+- iOS
+- Android
+- Web (limited functionality)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or later)
+- npm or yarn
+- Expo CLI (optional, but recommended)
+
+### Installation
+
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. Start the development server:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Run on your preferred platform:
+   - Press `i` for iOS simulator
+   - Press `a` for Android emulator
+   - Scan QR code with Expo Go app on your device
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## App Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+  ├── components/       # Reusable UI components
+  │   ├── EventsCard.tsx
+  │   └── TagChip.tsx
+  ├── models/          # TypeScript interfaces
+  │   ├── Event.ts
+  │   └── Tag.ts
+  ├── screens/         # Screen components
+  │   ├── HomeScreen.tsx
+  │   ├── AddEventScreen.tsx
+  │   └── EventDetailScreen.tsx
+  ├── storage/         # Data persistence
+  │   └── db.ts
+  └── utils/           # Utility functions
+      ├── time.ts
+      ├── calendar.ts
+      └── notifications.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Features in Detail
 
-## Learn more
+### Event Types
 
-To learn more about developing your project with Expo, look at the following resources:
+1. **Countdown**: Counts down to a future date/time
+   - Shows days, hours, minutes, and seconds remaining
+   - Can set reminders
+   - Can sync to calendar
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. **Time Since**: Tracks elapsed time from a past date
+   - Shows days, hours, and minutes since the event
+   - Useful for tracking milestones
 
-## Join the community
+3. **Timer**: Stopwatch functionality
+   - Start/pause controls
+   - Tracks elapsed time from when started
+   - Resets reference date when paused/resumed
 
-Join our community of developers creating universal apps.
+### Tags
+- Create custom tags with names and colors
+- Assign multiple tags to events
+- Organize and filter events by tags
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Calendar Integration
+- Sync events to your device's default calendar
+- Events appear in your calendar app
+- Automatic reminders for countdown events
+
+### Notifications
+- Set reminders for countdown events
+- Notifications appear 15 minutes before the event
+- Requires notification permissions
+
+## Widget Support
+
+Widget support requires native code implementation. To add widget support:
+
+### iOS Widgets
+1. Create a Widget Extension in Xcode
+2. Use WidgetKit to display event information
+3. Configure app groups for data sharing
+
+### Android Widgets
+1. Create an App Widget Provider
+2. Implement widget layout XML
+3. Update widget data using AppWidgetManager
+
+**Note**: Widget implementation is not included in this codebase as it requires native code. The app is structured to support widget integration in the future.
+
+## Permissions
+
+The app requires the following permissions:
+
+- **Calendar**: To sync events to your calendar
+- **Notifications**: To send reminder notifications
+
+Permissions are requested when you first use the related features.
+
+## Development
+
+### Project Structure
+- Uses Expo Router for file-based routing
+- TypeScript for type safety
+- AsyncStorage for local data persistence
+- Expo Calendar and Notifications for platform integrations
+
+### Key Dependencies
+- `expo-router`: File-based routing
+- `@react-native-async-storage/async-storage`: Local storage
+- `expo-calendar`: Calendar integration
+- `expo-notifications`: Push notifications
+- `dayjs`: Date/time manipulation
+- `uuid`: Unique ID generation
+
+## Building for Production
+
+1. Configure app.json with your app details
+2. Build for iOS:
+   ```bash
+   eas build --platform ios
+   ```
+3. Build for Android:
+   ```bash
+   eas build --platform android
+   ```
+
+## Future Enhancements
+
+- [ ] Widget support (iOS & Android)
+- [ ] Event editing functionality
+- [ ] Event filtering and search
+- [ ] Multiple calendar support
+- [ ] Recurring events
+- [ ] Export/import events
+- [ ] Cloud sync
+- [ ] Dark mode improvements
+
+## License
+
+This project is private and proprietary.
