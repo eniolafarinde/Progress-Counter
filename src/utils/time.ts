@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 export function getTimeDifference(date: string, type: string) {
   const now = dayjs();
@@ -8,11 +11,11 @@ export function getTimeDifference(date: string, type: string) {
     ? target.diff(now)
     : now.diff(target);
 
-  const duration = dayjs.duration(diff);
+  const durationObj = dayjs.duration(diff);
 
   return {
-    days: Math.abs(duration.days()),
-    hours: Math.abs(duration.hours()),
-    minutes: Math.abs(duration.minutes()),
+    days: Math.abs(durationObj.days()),
+    hours: Math.abs(durationObj.hours()),
+    minutes: Math.abs(durationObj.minutes()),
   };
 }

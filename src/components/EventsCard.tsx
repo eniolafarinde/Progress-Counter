@@ -5,6 +5,9 @@ import { getTimeDifference } from '../utils/time';
 import { TagChip } from './TagChip';
 import { Tag } from '../models/Tag';
 import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+
+dayjs.extend(duration);
 
 interface EventsCardProps {
   event: Event;

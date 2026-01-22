@@ -9,11 +9,15 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
 import { TagChip } from '../components/TagChip';
 import { Event, EventType } from '../models/Event';
 import { Tag } from '../models/Tag';
 import { getAllTags, saveEvent, saveTag } from '../storage/db';
+
+// Simple ID generator for React Native
+function generateId(): string {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
 
 const EVENT_TYPES: { label: string; value: EventType }[] = [
   { label: 'Countdown', value: 'countdown' },
@@ -103,7 +107,7 @@ export function AddEventScreen() {
     }
 
     const newTag: Tag = {
-      id: uuidv4(),
+      id: generateId(),
       name: newTagName.trim(),
       color: selectedColor,
     };
@@ -122,7 +126,7 @@ export function AddEventScreen() {
     }
 
     const newEvent: Event = {
-      id: uuidv4(),
+      id: generateId(),
       title: title.trim(),
       type: eventType,
       referenceDate: referenceDate.toISOString(),
